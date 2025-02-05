@@ -1,0 +1,198 @@
+body {
+    background-color: #f2f4f7;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+body .content{
+    padding: 2rem 0;
+    display: flex;
+    gap:10rem;
+}
+.side-section {
+    width: 280px; 
+    height: 100vh; 
+    overflow-y: auto;
+    /* position: fixed; */
+    left: 0;
+    top: 0;
+}
+.side-navbar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.side-navbar .menu-list {
+    display: flex;
+    width: 90%;
+    gap: 1rem;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #050505;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+.side-navbar .menu-list i {
+    font-size: 22px;
+    color: #214b91;
+    width: 30px;
+    text-align: center;
+}
+.side-navbar .menu-list:hover {
+    width:90%;
+    background: #d1d1d1;
+    cursor: pointer;
+}
+
+/* Post Section Container */
+.post-section {
+    background: white;
+    width: 550px; /* Adjust based on layout */
+    height:18%;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Section (Profile & Input Field) */
+.input-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Profile Image */
+.input-section img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+/* Input Field */
+.input-section input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    background: #f0f2f5;
+}
+
+.input-section input:hover {
+    background: #e9ecef;
+}
+
+/* Post Options (Live Video, Photo/Video, Feeling) */
+.post-options {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.post-options div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #65676b;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.post-options div:hover {
+    background: #f0f2f5;
+}
+
+/* Post Option Icons */
+.post-options i {
+    font-size: 20px;
+}
+
+.post-options div:nth-child(1) i {
+    color: #f02849; /* Live Video */
+}
+
+.post-options div:nth-child(2) i {
+    color: #45bd62; /* Photo/Video */
+}
+
+.post-options div:nth-child(3) i {
+    color: #f7b928; /* Feeling/Activity */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .post-section {
+        width: 95%;
+    }
+
+    .post-options {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .input-section img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .input-section input {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .post-options div {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .side-section {
+        width: 220px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .side-section {
+        width: 60px; 
+        padding: 10px;
+    }
+
+    .side-navbar .menu-list {
+        justify-content: center;
+        font-size: 0;
+    }
+
+    .side-navbar .menu-list i {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .side-section {
+        width: 50px;
+    }
+
+    .side-navbar .menu-list {
+        padding: 10px;
+    }
+
+    .side-navbar .menu-list span {
+        display: none;
+    }
+}
