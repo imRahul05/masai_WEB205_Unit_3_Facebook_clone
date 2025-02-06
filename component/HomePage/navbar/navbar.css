@@ -73,3 +73,15 @@ nav {
 .nav-right a img:hover {
     border: 2px solid #0866ff;
 }
+.nav-center a {
+    color: gray; /* Default color */
+    padding: 10px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.nav-center a.active {
+    color: blue; /* Active page color */
+    font-weight: bold;
+    border-bottom: 3px solid blue;
+}

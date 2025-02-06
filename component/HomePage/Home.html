@@ -24,19 +24,63 @@
                 <a class="menu-list"><span><i class="fa-solid fa-angle-down"></i></span>See More</a>
             </nav>
         </div>
-        <div class="post-section">
-            <div class="input-section">
-                <img src="./navbar/Logo.webp" alt="profile">
-                <input type="text" placeholder="What's on your mind..?"/>
+        <div class="middle-section">
+            <div class="post-section">
+                <div class="input-section">
+                    <img src="./navbar/Logo.webp" alt="profile">
+                    <input type="text" placeholder="What's on your mind..?"/>
+                </div>
+                <div class="post-options">
+                    <div><span><i class="fa-solid fa-video"></i></span> Live video</div>
+                    <div id="poto"><span><i class="fa-solid fa-images"></i></span>Photo/Video</div>
+                    <div><span><i class="fa-regular fa-face-laugh-beam"></i></span>Feeling/Activity</div>
+                </div>
             </div>
-            <div class="post-options">
-                <div><span><i class="fa-solid fa-video"></i></span> Live video</div>
-                <div><span><i class="fa-solid fa-images"></i></span>Photo/Video</div>
-                <div><span><i class="fa-regular fa-face-laugh-beam"></i></span>Feeling/Activity</div>
+            <div class="create-story">
+                <div class="plus-icon"><i class="fa-solid fa-plus"></i></div>
+                <div class="create-text">
+                    <h3>Create Story</h3>
+                    <p>Share a photo or write something...</p>
+                </div>
+            </div>            
+            <div class="posts">
+
             </div>
         </div>
+        <div class="right-side-section">
+            <div class="friends-section">
+                <h2>Friends</h2>
+                <div class="friend-suggestion">
+                    <div class="friend">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4YreOWfDX3kK-QLAbAL4ufCPc84ol2MA8Xg&s" alt="Friend 1" class="friend-img">
+                        <div class="friend-info">
+                            <p>John Doe</p>
+                            <button class="add-friend">Add Friend</button>
+                        </div>
+                    </div>
+                    <div class="friend">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4YreOWfDX3kK-QLAbAL4ufCPc84ol2MA8Xg&s" alt="Friend 2" class="friend-img">
+                        <div class="friend-info">
+                            <p>Jane Smith</p>
+                            <button class="add-friend">Add Friend</button>
+                        </div>
+                    </div>
+                    <!-- Add more friends here -->
+                </div>
+            </div>
+        </div>
+        
     </div>
-
+    <div id="post-popup" class="popup">
+        <div class="popup-content">
+            <h2>Create Post</h2>
+            <textarea id="postText" placeholder="What's on your mind?"></textarea>
+            <input type="file" id="postImage" accept="image/*">
+            <button id="postButton">Post</button>
+            <button id="closePopup">Cancel</button>
+        </div>
+    </div>    
     <script src="navbar/navbar.js"></script>
+    <script src="home.js"></script>
 </body>
 </html>
