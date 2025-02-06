@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Facebook</title>
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="../../assets/Logo.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <navigation-bar></navigation-bar>
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="cover-photo-container">
+            <img id="coverPhoto" src="default-cover-photo-url" alt="Cover Photo" class="cover-photo">
+            <button class="edit-cover-photo" onclick="document.getElementById('coverPhotoInput').click()">
+                Edit Cover Photo
+            </button>
+            <input type="file" id="coverPhotoInput" accept="image/*" style="display: none" onchange="handleCoverPhotoUpload(event)">
+        </div>
+        <div class="profile-info">
+            <div class="profile-pic-container">
+                <img id="profilePic" src="default-profile-pic-url" alt="Profile Picture" class="profile-picture">
+                <button class="edit-profile-pic" onclick="document.getElementById('profilePicInput').click()">
+                    Edit
+                </button>
+                <input type="file" id="profilePicInput" accept="image/*" style="display: none" onchange="handleProfilePicUpload(event)">
+            </div>
+            <div class="profile-details">
+                <h1 id="profileName">Loading...</h1>
+                <button class="edit-profile-btn" onclick="showEditProfileModal()">Edit Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Content -->
+    <div class="profile-content">
+        <div class="profile-left-sidebar">
+            <div class="about-section">
+                <h3>About</h3>
+                <div id="aboutContent">
+                    <p id="bioText">Add a bio</p>
+                    <p id="locationText">Add location</p>
+                    <p id="workText">Add work</p>
+                    <p id="educationText">Add education</p>
+                </div>
+            </div>
+            <div class="photos-section">
+                <h3>Photos</h3>
+                <div class="photos-grid" id="photosGrid">
+                    <!-- Photos will be loaded here -->
+                </div>
+            </div>
+        </div>
+        <div class="profile-main-content">
+
+            <!-- Post creation Div -->
+            <div class="post-section">
+                <div class="post-input">
+                    <img src="../HomePage/navbar/Logo.webp" alt="profile">
+                    <input type="text" placeholder="What's on your mind..?"  onclick="showPostModal()"/>
+                </div>
+                <div class="post-options">
+                    <div><span><i class="fa-solid fa-video"></i></span> Live video</div>
+                    <div><span><i class="fa-solid fa-images"></i></span>Photo/Video</div>
+                    <div><span><i class="fa-regular fa-face-laugh-beam"></i></span>Feeling/Activity</div>
+                </div>
+            </div>
+
+            <!--  -->
+            <!-- <div class="create-post">
+                <div class="post-input">
+                    <img id="postProfilePic" src="default-profile-pic-url" alt="Profile" class="profile-pic">
+                    <input type="text" placeholder="What's on your mind?" onclick="showPostModal()">
+                </div>
+            </div> -->
+            <div id="postsContainer">
+                <!-- Posts  -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditProfileModal()">&times;</span>
+            <h2>Edit Profile</h2>
+            <form id="editProfileForm">
+                <div class="form-group">
+                    <label>Bio</label>
+                    <textarea id="bioInput" placeholder="Write something about yourself"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" id="locationInput" placeholder="Where do you live?">
+                </div>
+                <div class="form-group">
+                    <label>Work</label>
+                    <input type="text" id="workInput" placeholder="Where do you work?">
+                </div>
+                <div class="form-group">
+                    <label>Education</label>
+                    <input type="text" id="educationInput" placeholder="Where did you study?">
+                </div>
+                <button type="submit" class="save-profile-btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create Post Modal -->
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePostModal()">&times;</span>
+            <h2>Create Post</h2>
+            <form id="createPostForm">
+                <textarea id="postText" placeholder="What's on your mind?" required></textarea>
+                <input type="file" id="postImage" accept="image/*">
+                <button type="submit" class="post-btn">Post</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="profile.js"></script>
+    <script src="nav.js" defer></script>
+</body>
+</html>

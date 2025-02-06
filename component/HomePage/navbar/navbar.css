@@ -21,7 +21,7 @@ nav {
     height: 3rem;
 }
 
-.nav-left, .nav-center, .nav-right {
+.nav-left,.nav-center,.nav-right {
     display: flex;
     align-items: center;
 }
@@ -34,8 +34,18 @@ nav {
     outline: none;
     width: 12.5rem;
 }
-
-.nav-center a, .nav-right a {
+.nav-center a{
+    margin: 0 1.5rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+.nav-right a {
     margin: 0 0.8rem;
     text-decoration: none;
     display: flex;
@@ -72,4 +82,92 @@ nav {
 
 .nav-right a img:hover {
     border: 2px solid #0866ff;
+}
+.nav-left input:hover{
+  border-color: #0866ff;
+  cursor: text;
+}
+
+.setting_menu {
+    position: absolute;
+    width: 90%;
+    max-width: 350px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    top: 108%;
+    right: 5%;
+    max-height: 0;
+    transition: max-height 1s;
+    border-radius: 4px;
+}
+
+.setting_menu_height {
+    max-height: 450px;
+}
+
+.user_profile {
+    display: flex;
+    align-items: center;
+}
+
+.user_profile i {
+    margin-right: 20px;
+}
+
+.user_info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.user_info a {
+    font-size: 12px;
+    color: #1876f2;
+    text-decoration: none;
+    white-space: nowrap;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    display: inline;
+}
+
+.user_info p {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #626262;
+    margin-top: 0;
+}
+
+.settings_menu_inner {
+    padding: 20px;
+}
+
+.setting_menu hr {
+    border: 0;
+    height: 1px;
+    background-color: #9a9a9a;
+    margin: 15px 0;
+}
+
+.setting_link {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.setting_link .setting_icon {
+    width: 38px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.setting_link a {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #626262;
 }

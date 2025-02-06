@@ -1,0 +1,44 @@
+[
+    {
+        "id": "fake1",
+        "firstName": "Sarah",
+        "lastName": "Johnson",
+        "email": "sarah@example.com",
+        "password": "password123",
+        "profilePic": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
+        "bio": "Adventure seeker | Photography lover | Coffee addict",
+        "location": "San Francisco, CA",
+        "work": "Senior Designer at Creative Co",
+        "education": "Art Institute of California",
+        "friends": ["fake2", "fake3"],
+        "friendRequests": []
+    },
+    {
+        "id": "fake2",
+        "firstName": "Mike",
+        "lastName": "Wilson",
+        "email": "mike@example.com",
+        "password": "password123",
+        "profilePic": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop",
+        "bio": "Food enthusiast | Amateur chef | Travel lover",
+        "location": "Chicago, IL",
+        "work": "Head Chef at Tasty Bites",
+        "education": "Culinary Institute of America",
+        "friends": ["fake1"],
+        "friendRequests": []
+    },
+    {
+        "id": "fake3",
+        "firstName": "Emily",
+        "lastName": "Davis",
+        "email": "emily@example.com",
+        "password": "password123",
+        "profilePic": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop",
+        "bio": "Tech professional | Dog lover | Fitness enthusiast",
+        "location": "New York, NY",
+        "work": "Product Manager at Tech Corp",
+        "education": "MIT",
+        "friends": ["fake1"],
+        "friendRequests": []
+    }
+]

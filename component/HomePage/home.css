@@ -10,6 +10,7 @@ body .content{
     padding: 2rem 0;
     display: flex;
     gap:10rem;
+    margin: 3rem 0 0 0;
 }
 .side-section {
     width: 280px; 
