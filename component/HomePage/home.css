@@ -3,21 +3,26 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: flex-start;
+    
 }
 body .content{
-    padding: 2rem 0;
+    width:100%;
+    padding: 1rem 0;
     display: flex;
-    gap:10rem;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto; 
+    height: 100vh;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
 }
 .side-section {
-    width: 280px; 
+    width: 250px; 
     height: 100vh; 
-    overflow-y: auto;
-    /* position: fixed; */
+    position: fixed;
     left: 0;
     top: 0;
+    padding: 20px;
 }
 .side-navbar {
     display: flex;
@@ -51,20 +56,18 @@ body .content{
 /* Post Section Container */
 .post-section {
     background: white;
-    width: 550px; /* Adjust based on layout */
-    height:18%;
-    margin: 20px auto;
+    width: 600px; /* Adjust width */
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Input Section (Profile & Input Field) */
+/* Input Section */
 .input-section {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 0;
+    padding: 15px;
     border-bottom: 1px solid #ddd;
 }
 
@@ -79,8 +82,8 @@ body .content{
 .input-section input {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 25px;
+    border: none;
+    border-radius: 50px;
     font-size: 16px;
     outline: none;
     background: #f0f2f5;
@@ -90,19 +93,38 @@ body .content{
     background: #e9ecef;
 }
 
-/* Post Options (Live Video, Photo/Video, Feeling) */
+/* Post Options */
 .post-options {
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
+}
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative; /* For positioning the options button */
+}
+
+.posts-options {
+    position: absolute;
+    right: 10px; /* Adjusted right margin */
+    top: 10px;  /* Keeps it vertically aligned at the top of the post */
+    cursor: pointer;
+    font-size: 18px;
+    color: #65676b;
+}
+
+.posts  -options:hover {
+    color: #214b91; /* On hover change color */
 }
 
 .post-options div {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 12px;
-    font-size: 14px;
+    padding: 10px 15px;
+    font-size: 16px;
     font-weight: 500;
     color: #65676b;
     border-radius: 8px;
@@ -113,12 +135,6 @@ body .content{
 .post-options div:hover {
     background: #f0f2f5;
 }
-
-/* Post Option Icons */
-.post-options i {
-    font-size: 20px;
-}
-
 .post-options div:nth-child(1) i {
     color: #f02849; /* Live Video */
 }
@@ -129,6 +145,336 @@ body .content{
 
 .post-options div:nth-child(3) i {
     color: #f7b928; /* Feeling/Activity */
+}
+.middle-section{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    margin: auto;
+}
+.create-story {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    width: 600px; /* Adjust width as per your design */
+    gap: 15px;
+}
+
+.create-story .plus-icon {
+    background-color: #e9efff;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+
+.create-story .plus-icon i {
+    color: #4285f4;
+    font-size: 18px;
+}
+
+.create-story .create-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-story .create-text h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.create-story .create-text p {
+    font-size: 14px;
+    color: #65676b;
+    margin: 5px 0;
+}
+
+/* Hover effect */
+.create-story:hover {
+    background-color: #f7f9fb;
+    cursor: pointer;
+}
+
+
+/* Posts Container */
+.posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 600px; /* Match post section width */
+    margin: auto;
+}
+
+/* Individual Post */
+.post {
+    width: 100%;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Post Header */
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative; /* For positioning the options button */
+
+}
+
+/* Profile Pic */
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Post Content */
+.post-content p {
+    margin: 10px 0;
+}
+
+/* Post Image */
+.post-image {
+    width: 100%;
+    max-height: 400px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Post Footer (Likes, Comments, Share) */
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Facebook-like Interaction Buttons */
+.post-footer div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.post-footer div:hover {
+    background: #f0f2f5;
+}
+.content .right-side-section {
+    width: 250px;
+    padding: 2rem;
+    margin-top: 3.5rem;
+}
+
+.friends-section {
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.friends-section h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.friend-suggestion {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.friend {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.friend:hover {
+    background-color: #e9ecef;
+}
+
+.friend-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.friend-info {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.friend-info p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.add-friend {
+    padding: 5px 10px;
+    font-size: 12px;
+    background-color: #3447a8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-friend:hover {
+    background-color: #6577ff;
+}
+/* Right Section - Friend's Section */
+.right-side-section {
+    width: 250px;
+    padding: 1rem;
+    margin-top: 20px;
+    position: fixed; /* Keeps it fixed on the page */
+    right: 0;
+    top: 0;
+}
+.comment-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-content textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.popup-content button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.popup-content .close-popup {
+    background-color: #f44336;
+}
+
+.popup-content .submit-comment {
+    background-color: #4CAF50;
+}
+.liked {
+    color: blue !important; /* Change to the color you want */
+    font-weight: bold;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    width: 350px;
+    text-align: center;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.popup input {
+    margin-bottom: 10px;
+}
+
+.popup button {
+    margin: 5px;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+#postButton {
+    background-color: #1877F2;
+    color: white;
+}
+
+#closePopup {
+    background-color: #ccc;
+}
+
+@media screen and (max-width: 768px) {
+    .right-side-section {
+        width: 200px;
+        padding: 15px;
+    }
+    
+    .middle-section {
+        margin-right: 220px; /* Adjust based on the new width */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .right-side-section {
+        width: 180px;
+        padding: 10px;
+    }
+    
+    .middle-section {
+        margin-right: 200px; /* Adjust for smaller screen size */
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .post-section, .posts {
+        width: 95%;
+    }
 }
 
 /* Responsive Design */
