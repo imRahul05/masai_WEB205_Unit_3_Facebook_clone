@@ -34,6 +34,10 @@ nav {
     outline: none;
     width: 12.5rem;
 }
+.nav-left input:hover{
+    border-color: #0866ff;
+    cursor: text;
+  }
 
 .nav-center a, .nav-right a {
     margin: 0 0.8rem;
@@ -84,4 +88,87 @@ nav {
     color: blue; /* Active page color */
     font-weight: bold;
     border-bottom: 3px solid blue;
+}
+.setting_menu {
+    position: absolute;
+    width: 90%;
+    max-width: 350px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    top: 108%;
+    right: 5%;
+    max-height: 0;
+    transition: max-height 1s;
+    border-radius: 4px;
+}
+
+.setting_menu_height {
+    max-height: 450px;
+}
+
+.user_profile {
+    display: flex;
+    align-items: center;
+}
+
+.user_profile i {
+    margin-right: 20px;
+}
+
+.user_info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* Add this to prevent flex items from overflowing */
+}
+
+.user_info a {
+    font-size: 12px;
+    color: #1876f2;
+    text-decoration: none;
+    white-space: nowrap; /* Keep text in a single line */
+    width: auto; /* Allow the link to take its natural width */
+    margin: 0; /* Reset margins */
+    padding: 0; /* Reset padding */
+    height: auto; /* Reset height */
+    display: inline; /* Change from flex to inline */
+}
+
+.user_info p {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #626262;
+    margin-top: 0;
+}
+
+.settings_menu_inner {
+    padding: 20px;
+}
+
+.setting_menu hr {
+    border: 0;
+    height: 1px;
+    background-color: #9a9a9a;
+    margin: 15px 0;
+}
+
+.setting_link {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.setting_link .setting_icon {
+    width: 38px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.setting_link a {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #626262;
 }

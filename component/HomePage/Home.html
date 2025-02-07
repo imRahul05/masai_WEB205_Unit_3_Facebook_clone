@@ -10,10 +10,11 @@
 </head>
 <body>
     <div id="navbar-container"></div>
+     
     <div class="content">
         <div class="side-section">
             <nav class="side-navbar">
-                <a class="menu-list"><span><i class="fa-solid fa-user"></i></span>Usaer Profile</a>
+                <a href="Profile/Profile.html" class="menu-list"><span><i class="fa-solid fa-user"></i></span><span id="username">Usaer Profile</span></a>
                 <a class="menu-list"><span><i class="fa-solid fa-user-group"></i></span>Find Friends</a>
                 <a class="menu-list"><span><i class="fa-solid fa-clock-rotate-left"></i></span>Memories</a>
                 <a class="menu-list"><span><i class="fa-solid fa-bookmark"></i></span>Saved</a>
@@ -25,6 +26,19 @@
             </nav>
         </div>
         <div class="middle-section">
+            <div class="stories-section">
+                <div id="stories-container"></div>
+            </div>
+            <div id="story-popup" class="popup">
+                <div class="popup-content">
+                    <h2>Create Story</h2>
+                    <input type="file" id="storyImage" accept="image/*,video/*">
+                    <div id="storyPreview"></div>
+                    <button id="postStoryButton">Post Story</button>
+                    <button id="closeStoryPopup">Cancel</button>
+                </div>
+            </div>
+
             <div class="post-section">
                 <div class="input-section">
                     <img src="./navbar/Logo.webp" alt="profile">
