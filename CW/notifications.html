@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Clone - Notifications</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Notifications Container */
+        .notifications-wrapper {
+            display: flex;
+            width: 90vw;
+            max-width: 1200px;
+            height: 90vh;
+            background: white;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            width: 50%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Notification Items */
+        .notification {
+            display: flex;
+            align-items: center;
+            background: #e7f3ff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .notification:hover {
+            background: #d8ebff;
+        }
+
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .text p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .text .time {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .dots {
+            margin-left: auto;
+            font-size: 20px;
+            color: gray;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .notifications-wrapper {
+                flex-direction: column;
+            }
+            .section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="notifications-wrapper">
+        <div class="section">
+            <h2>New</h2>
+            <div id="new-notifications"></div>
+        </div>
+        <div class="section">
+            <h2>Old</h2>
+            <div id="old-notifications"></div>
+        </div>
+    </div>
+
+    <script>
+        const newNotifications = [
+            { name: "Rajesh Kumar", action: "Liked your post on 'Weekend Vibes'", time: "2h" },
+            { name: "Priya Sharma", action: "commented: 'Amazing picture! 🔥'", time: "5h" },
+            { name: "Ankit Verma", action: "Sent you a friend request", time: "1d" },
+            { name: "Neha Gupta", action: "Reacted ❤ to your story", time: "3d" },
+            { name: "Ravi Singh", action: "Shared your post in a group", time: "6d" },
+            { name: "Pooja Mehta", action: "Commented on your profile picture", time: "7d" },
+            { name: "Suresh Nair", action: "Mentioned you in a comment", time: "1w" },
+            { name: "Aditi Sharma", action: "Sent you a message", time: "2w" },
+            { name: "Rohan Patel", action: "Reacted 👍 to your post", time: "2w" },
+            { name: "Kavita Das", action: "Started following you", time: "3w" }
+        ];
+
+        const oldNotifications = [
+            { name: "Suman Das", action: "Started following you", time: "1w" },
+            { name: "Amit Yadav", action: "Tagged you in a photo", time: "2w" },
+            { name: "Preeti Nair", action: "Mentioned you in a comment", time: "3w" },
+            { name: "Vikram Rao", action: "Sent you a message", time: "1m" },
+            { name: "Sneha Joshi", action: "Replied to your comment", time: "2m" },
+            { name: "Manoj Thakur", action: "Liked your profile picture", time: "2m" },
+            { name: "Ritika Sharma", action: "Invited you to an event", time: "3m" },
+            { name: "Arjun Malhotra", action: "Joined a group you follow", time: "1m" },
+            { name: "Deepak Chauhan", action: "Updated his status", time: "1m" },
+            { name: "Sunita Kapoor", action: "Shared a memory with you", time: "4m" }
+        ];
+
+        function renderNotifications(notifications, containerId) {
+            const container = document.getElementById(containerId);
+            notifications.forEach((notif, index) => {
+                const notificationDiv = document.createElement('div');
+                notificationDiv.classList.add('notification');
+                notificationDiv.innerHTML = `
+                    <img src="https://randomuser.me/api/portraits/men/${index % 10 + 10}.jpg" class="profile-pic" alt="User">
+                    <div class="text">
+                        <p><strong>${notif.name}:</strong> ${notif.action}</p>
+                        <span class="time">${notif.time}</span>
+                    </div>
+                    <span class="dots">⋯</span>
+                `;
+                notificationDiv.addEventListener("click", () => {
+                    notificationDiv.style.background = "#d8d8d8";
+                });
+                container.appendChild(notificationDiv);
+            });
+        }
+
+        renderNotifications(newNotifications, "new-notifications");
+        renderNotifications(oldNotifications, "old-notifications");
+    </script>
+</body>
+</html>
