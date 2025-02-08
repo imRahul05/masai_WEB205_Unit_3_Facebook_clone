@@ -703,3 +703,128 @@ body .content{
         display: none;
     }
 }
+@media screen and (max-width: 1024px) {
+    .side-section {
+        width: 200px;
+        padding: 15px;
+    }
+
+    .post-section {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .posts {
+        width: 90%;
+    }
+
+    .create-story {
+        width: 90%;
+    }
+
+    .input-section input {
+        padding: 10px;
+    }
+}
+@media screen and (max-width: 1178px) {
+    /* Hide the right-side section */
+    .right-side-section {
+        display: none;
+    }
+
+    .side-section {
+        width: 100px;  /* You can adjust this value based on your design */
+        padding: 5px;
+    }
+
+    /* Adjust the menu list in the left-side navbar */
+    .side-navbar .menu-list {
+        font-size: 7px;
+        padding: 5px;
+    }
+
+    /* Adjust the post section */
+    
+}
+
+/* Mobile Devices (480px to 768px) */
+@media screen and (max-width: 768px) {
+    .side-section {
+        display: none;
+    }
+
+    .side-navbar .menu-list {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .post-section {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .posts {
+        width: 100%;
+    }
+
+    .create-story {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .post {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .middle-section {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .input-section input {
+        padding: 8px;
+    }
+
+    .right-side-section {
+        width: 100%;
+        position: relative;
+    }
+}
+
+
+/* Small Screens (Mobile portrait devices <480px) */
+@media screen and (max-width: 480px) {
+    .side-section {
+        display: none;
+    }
+
+    .post-section {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .posts {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .create-story {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .input-section input {
+        padding: 6px;
+    }
+
+    .post-footer {
+        font-size: 12px;
+    }
+
+    .comment-popup {
+        width: 100%;
+        padding: 10px;
+    }
+}
