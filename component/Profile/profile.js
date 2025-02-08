@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+    fetchingPosts()
     console.log('hi')
     const currentUser = JSON.parse(localStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('currentUser'));
     if (!currentUser) {
@@ -26,13 +27,17 @@ document.addEventListener("DOMContentLoaded", function() {
             localStorage.setItem('posts', JSON.stringify([]));
         }
         
-        // Load user's posts
-        console.log(user)
-        loadUserPosts(user);
+        // Set globals for firebase functions
+        window.currentUser = currentUser;
+        window.postsContainer = document.getElementById('postsContainer');
+
+        // Replace localStorage posts loading with Firebase posts fetching
+        fetchingPosts();
     }
 });
 
 // Update loadUserPosts function to properly handle posts
+
 function loadUserPosts(user) {
     const allPosts = JSON.parse(localStorage.getItem('posts')) || [];
     const userPosts = allPosts.filter(post => post.userId === user.id);
@@ -259,3 +264,270 @@ function handleLike(postId) {
         loadUserPosts(user);
     }
 }
+
+// Firebase posts integration start
+async function fetchingPosts() {
+    let response = await fetch("https://facebook-ce39f-default-rtdb.firebaseio.com/posts.json");
+    let res = await response.json();
+    console.log(res);
+    let posts = res ? Object.entries(res).map(([id, data]) => ({ id, ...data })) : [];
+    displayPosts(posts);
+}
+const currentUser = JSON.parse(localStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('currentUser'));
+function displayPosts(posts) {
+    console.log('ggg')
+    postsContainer.innerHTML = ""; 
+    posts.forEach(post => {
+        if (!post || !post.timestamp) {
+            console.warn("Invalid post detected", post);
+            return; 
+        }
+        let postElement = document.createElement("div");
+        postElement.classList.add("post");
+        
+        let currentuser = currentUser.firstName || "Guest"; 
+        let isLiked = post.likedUsers && post.likedUsers.includes(currentuser);
+        console.log('xxx')
+        postElement.innerHTML = `
+            <div class="post-header">
+                <img src="${post.profile_pic || "./navbar/Logo.webp"}" alt="${post.username || "Guest"}" class="profile-pic">
+                <div>
+                    <h4>${post.username || "Guest"}</h4>
+                    <p>${new Date(post.timestamp).toLocaleString()}</p>
+                </div>
+                <div class="posts-options">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                    <div class="dropdown-menu hidden">
+                        <button class="edit-post" data-post-id="${post.id}">Edit</button>
+                        <button class="delete-post" data-post-id="${post.id}">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="post-content">
+                <p>${post.content || ""}</p>
+                ${post.image ? `<img src="${post.image}" alt="Post Image" class="post-image">` : ""}
+            </div>
+            <div class="post-footer">
+                <div class="likes ${isLiked ? 'liked' : ''}" data-post-id="${post.id}">
+                    <i class="fa-solid fa-thumbs-up"></i> ${post.likes} Likes
+                </div>
+                <div class="comments" data-post-id="${post.id}">
+                    <i class="fa-solid fa-comment"></i> ${post.comments.length} Comments
+                </div>
+            </div>
+        `;
+        console.log('sss')
+        postsContainer.appendChild(postElement);
+        let menuIcon = postElement.querySelector(".fa-ellipsis-vertical");
+        let dropdownMenu = postElement.querySelector(".dropdown-menu");
+
+        menuIcon.addEventListener("click", (event) => {
+            event.stopPropagation();
+            dropdownMenu.classList.toggle("hidden");
+        });
+
+        // Handle Edit Post
+        let editButton = postElement.querySelector(".edit-post");
+        editButton.addEventListener("click", () => editPost(post));
+
+        // Handle Delete Post
+        let deleteButton = postElement.querySelector(".delete-post");
+        deleteButton.addEventListener("click", () => deletePost(post.id));
+    });
+
+    // Attach click event listeners for likes and comments
+    document.querySelectorAll('.likes').forEach(button => {
+        button.addEventListener('click', async (e) => {
+            let postId = e.target.closest('.likes').dataset.postId;
+            await updateLikes(postId);
+        });
+    });
+    document.querySelectorAll('.comments').forEach(button => {
+        button.addEventListener('click', (e) => {
+            let postId = e.target.closest('.comments').dataset.postId;
+            openCommentPopup(postId);
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    let postPopup = document.getElementById("post-popup");
+    let postTrigger = document.querySelector(".input-section input");
+    
+    if (postTrigger) {
+        postTrigger.addEventListener("click", () => {
+            postPopup.style.display = "block";
+        });
+    } else {
+        console.error("Popup trigger not found!");
+    }
+});
+
+function editPost(post) {
+    let newContent = prompt("Edit your post:", post.content);
+    if (newContent !== null && newContent.trim() !== "") {
+        fetch(`https://facebook-ce39f-default-rtdb.firebaseio.com/posts/${post.id - 1}.json`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ content: newContent }),
+        }).then(() => fetchingPosts());
+    }
+}
+
+function deletePost(postId) {
+    let confirmDelete = confirm("Are you sure you want to delete this post?");
+    if (confirmDelete) {
+        fetch(`https://facebook-ce39f-default-rtdb.firebaseio.com/posts/${postId - 1}.json`, {
+            method: "DELETE",
+        }).then(() => fetchingPosts());
+    }
+}
+
+let postPopup = document.getElementById("post-popup");
+let postText = document.getElementById("postText");
+let postImage = document.getElementById("postImage");
+let postButton = document.getElementById("postButton");
+let closePopup = document.getElementById("closePopup");
+let photo = document.getElementById("poto");
+
+document.querySelector(".input-section input").addEventListener("click", () => {
+    postPopup.style.display = "block";
+});
+photo.addEventListener("click", () => {
+    postPopup.style.display = "block";
+});
+closePopup.addEventListener("click", () => {
+    postPopup.style.display = "none";
+});
+
+async function uploadImage(file) {
+    let reader = new FileReader();
+    return new Promise((resolve, reject) => {
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+        reader.readAsDataURL(file);
+    });
+}
+
+postButton.addEventListener("click", async () => {
+    let content = postText.value.trim();
+    let imageFile = postImage.files[0];
+
+    if (!content) {
+        alert("Post cannot be empty!");
+        return;
+    }
+    let imageUrl = imageFile ? await uploadImage(imageFile) : null;
+
+    let response = await fetch("https://facebook-ce39f-default-rtdb.firebaseio.com/posts.json");
+    let posts = await response.json();
+    let newPostId = posts ? Object.keys(posts).length + 1 : 1;
+    console.log("profilepic", currentUser.profilePic);
+    let newPost = {
+        id: newPostId,
+        username: currentUser.firstName || "Guest",
+        profile_pic: currentUser.profilePic, 
+        content: content,
+        image: imageUrl,
+        timestamp: new Date().toISOString(),
+        likes: 0,
+        comments: ["none"]
+    };
+    await fetch(`https://facebook-ce39f-default-rtdb.firebaseio.com/posts/${newPostId - 1}.json`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newPost),
+    });
+
+    postPopup.style.display = "none";
+    postText.value = "";
+    postImage.value = "";
+    fetchingPosts();
+});
+
+async function updateLikes(postId) {
+    let response = await fetch(`https://facebook-ce39f-default-rtdb.firebaseio.com/posts/${postId - 1}.json`);
+    let post = await response.json();
+
+    if (!post.likedUsers) {
+        post.likedUsers = [];
+    }
+    let currentuser = currentUser.firstName || "Guest"; 
+    if (!post.likedUsers.includes(currentuser)) {
+        post.likes += 1;
+        post.likedUsers.push(currentuser);
+    } else {
+        post.likes -= 1;
+        post.likedUsers = post.likedUsers.filter(user => user !== currentuser);
+    }
+    await fetch(`https://facebook-ce39f-default-rtdb.firebaseio.com/posts/${postId - 1}.json`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(post)
+    });
+    fetchingPosts();
+}
+
+async function openCommentPopup(postId) {
+    let response = await fetch(`https://facebook-ce39f-default-rtdb.firebaseio.com/posts/${postId - 1}.json`);
+    let post = await response.json();
+    let popup = document.createElement('div');
+    popup.classList.add('comment-popup');
+    popup.innerHTML = `
+        <div class="popup-content">
+            <h3>Comments</h3>
+            <div class="existing-comments">
+                ${post.comments && post.comments.length > 0 
+                    ? post.comments.filter(comment => comment !== "none").map(comment => `
+                        <div class="comment">
+                            <strong>${comment.username}</strong>: ${comment.content}
+                        </div>
+                    `).join('') 
+                    : '<p>No comments yet.</p>'
+                }
+            </div>
+            <textarea id="commentText" placeholder="Write your comment here..."></textarea>
+            <button class="submit-comment">Submit</button>
+            <button class="close-popup">Close</button>
+        </div>
+    `;
+    document.body.appendChild(popup);
+    popup.querySelector('.close-popup').addEventListener('click', () => {
+        document.body.removeChild(popup);
+    });
+    popup.querySelector('.submit-comment').addEventListener('click', async () => {
+        let commentText = popup.querySelector('#commentText').value;
+        if (commentText.trim()) {
+            await addComment(postId, commentText);
+            document.body.removeChild(popup);
+        }
+    });
+}
+
+async function addComment(postId, commentText) {
+    let response = await fetch(`https://facebook-ce39f-default-rtdb.firebaseio.com/posts/${postId - 1}.json`);
+    let post = await response.json();
+    let username = currentUser.firstName || "Guest";  
+    if (!post.comments) {
+        post.comments = [];
+    }
+    post.comments.push({ username: username, content: commentText });
+    await fetch(`https://facebook-ce39f-default-rtdb.firebaseio.com/posts/${postId - 1}.json`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(post)
+    });
+    fetchingPosts();
+}
+// Firebase posts integration end
+
+
+
+
+
+
+
+
+
+
+
