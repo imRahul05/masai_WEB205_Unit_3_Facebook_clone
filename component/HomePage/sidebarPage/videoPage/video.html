@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos</title>
+    <link rel="stylesheet" href="videos.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="video-player">
+            <h2>Featured Video</h2>
+            <div class="video-container">
+                <video id="videoPlayer" controls>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="video-description">
+                <h3>Video Title</h3>
+                <p>This is a description of the featured video. You can describe the content of the video here.</p>
+            </div>
+        </div>
+
+        <!-- Upload New Video -->
+        <div class="upload-video-section">
+            <h2>Upload a New Video</h2>
+            <form id="videoUploadForm">
+                <input type="file" id="videoUpload" accept="video/*" required>
+                <input type="text" id="videoTitle" placeholder="Video Title" required>
+                <textarea id="videoDescription" placeholder="Video Description" required></textarea>
+                <button type="submit">Upload Video</button>
+            </form>
+        </div>
+
+        <!-- Video Gallery -->
+        <div class="video-gallery">
+            <h2>Video Gallery</h2>
+            <div class="video-list">
+                <div class="video-item">
+                    <video width="200" height="150" controls>
+                        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                    </video>
+                    <p>Video Title 1</p>
+                </div>
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Videos</title>
+                    <link rel="stylesheet" href="videos.css">
+                    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500&display=swap" rel="stylesheet">
+                </head>
+                <body>
+                
+                    <!-- Navbar -->
+                    <div id="navbar-container"></div>
+                
+                    <!-- Main Content -->
+                    <div class="content">
+                        <!-- Featured Video Section -->
+                        <div class="video-player">
+                            <h2>Featured Video</h2>
+                            <div class="video-container">
+                                <video id="videoPlayer" controls>
+                                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <div class="video-description">
+                                <h3>Video Title</h3>
+                                <p>This is a description of the featured video. You can describe the content of the video here. Enjoy watching!</p>
+                            </div>
+                        </div>
+                
+                        <!-- Upload New Video Section -->
+                        <div class="upload-video-section">
+                            <h2>Upload a New Video</h2>
+                            <form id="videoUploadForm" class="upload-form">
+                                <input type="file" id="videoUpload" accept="video/*" required>
+                                <input type="text" id="videoTitle" placeholder="Video Title" required>
+                                <textarea id="videoDescription" placeholder="Video Description" required></textarea>
+                                <button type="submit" class="upload-btn">Upload Video</button>
+                            </form>
+                        </div>
+                
+                        <!-- Video Gallery -->
+                        <div class="video-gallery">
+                            <h2>Video Gallery</h2>
+                            <div class="video-list">
+                                <div class="video-item">
+                                    <video width="200" height="150" controls>
+                                        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                                    </video>
+                                    <p>Video Title 1</p>
+                                </div>
+                                <div class="video-item">
+                                    <video width="200" height="150" controls>
+                                        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                                    </video>
+                                    <p>Video Title 2</p>
+                                </div>
+                                <!-- Add more video items here -->
+                            </div>
+                        </div>
+                    </div>
+                
+                    <script>
+                        // Load Navbar dynamically (from previous steps)
+                        document.getElementById('navbar-container').innerHTML = fetch('navbar.html')
+                            .then(response => response.text())
+                            .then(data => document.getElementById('navbar-container').innerHTML = data);
+                
+                        // Handle video upload form submission
+                        document.getElementById('videoUploadForm').addEventListener('submit', function(event) {
+                            event.preventDefault();
+                
+                            const videoFile = document.getElementById('videoUpload').files[0];
+                            const videoTitle = document.getElementById('videoTitle').value;
+                            const videoDescription = document.getElementById('videoDescription').value;
+                
+                            if(videoFile && videoTitle && videoDescription) {
+                                // Handle video uploading logic here (like saving to server or API)
+                                alert(`Video "${videoTitle}" uploaded successfully!`);
+                
+                                // Clear the form
+                                document.getElementById('videoUploadForm').reset();
+                            } else {
+                                alert("Please fill in all fields and select a video.");
+                            }
+                        });
+                    </script>
+                
+                </body>
+                </html>
+                            <div class="video-item">
+                    <video width="200" height="150" controls>
+                        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                    </video>
+                    <p>Video Title 2</p>
+                </div>
+                <!-- Add more videos here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load Navbar dynamically (from previous steps)
+        document.getElementById('navbar-container').innerHTML = fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('navbar-container').innerHTML = data);
+
+        // Handle video upload form submission
+        document.getElementById('videoUploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const videoFile = document.getElementById('videoUpload').files[0];
+            const videoTitle = document.getElementById('videoTitle').value;
+            const videoDescription = document.getElementById('videoDescription').value;
+
+            if(videoFile && videoTitle && videoDescription) {
+                // Handle video uploading logic here (like saving to server or API)
+                alert(`Video "${videoTitle}" uploaded successfully!`);
+
+                // Clear the form
+                document.getElementById('videoUploadForm').reset();
+            } else {
+                alert("Please fill in all fields and select a video.");
+            }
+        });
+    </script>
+
+</body>
+</html>

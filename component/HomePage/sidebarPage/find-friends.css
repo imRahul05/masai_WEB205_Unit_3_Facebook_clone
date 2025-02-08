@@ -1,0 +1,122 @@
+/* find-friends.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fb;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.content {
+    margin: 40px auto;
+    width: 80%;
+    max-width: 1000px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.search-section {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+#searchInput {
+    padding: 12px;
+    font-size: 18px;
+    width: 60%;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#searchInput:focus {
+    border-color: #007bff;
+}
+
+#searchButton {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#searchButton:hover {
+    background-color: #0056b3;
+}
+
+.search-results {
+    margin-top: 20px;
+}
+
+#resultsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.friend-result {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border: 2px solid #f1f1f1;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+.friend-result:hover {
+    transform: scale(1.05);
+}
+
+.friend-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.friend-info {
+    flex-grow: 1;
+    font-size: 18px;
+    color: #555;
+}
+
+.add-friend-btn {
+    padding: 8px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.add-friend-btn:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
+}
+
+.add-friend-btn:active {
+    transform: translateY(1px);
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+}
