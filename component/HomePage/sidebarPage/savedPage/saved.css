@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    margin: 20px;
+}
+
+.saved-section {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+#savedItemsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.saved-item {
+    width: 250px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.saved-item img {
+    width: 100%;
+    height: auto;
+}
+
+.saved-item-content {
+    padding: 10px;
+    text-align: center;
+}
+
+.saved-item-content h3 {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.saved-item-content p {
+    font-size: 14px;
+    color: #777;
+}
+
+.remove-saved-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.remove-saved-btn:hover {
+    background-color: #c82333;
+}
