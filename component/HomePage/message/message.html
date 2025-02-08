@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Clone - Messages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        navigation-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .container {
+            width: 30vw;
+            height: 90vh;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow-y: auto;
+        }
+
+        .chat-box {
+            width: 60vw;
+            height: calc(90vh - 6rem);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            margin-top: 6rem;
+            overflow-y: auto;
+        }
+
+        .message {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .message img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .chat-header button {
+            border: none;
+            background: transparent;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding-right: 10px;
+        }
+
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding-top: 0.5rem;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            padding: 10px 20px;
+            background-color: #1877F2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <navigation-bar style="margin-bottom:3rem;"></navigation-bar>
+    <div class="container" style="margin-top:6rem;" id="messagesPage">
+        <h2>Messages</h2>
+        <div class="messages-list" id="messagesList"></div>
+    </div>
+
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+            <button onclick="closeChat()">&#8592;</button>
+            <img id="chatUserImg" src="" alt="User" width="40" height="40" style="border-radius:50%; margin-right:10px;">
+            <h4 id="chatUserName"></h4>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const messagesData = {
+            "Amit Verma": [],
+            "Priya Singh": [],
+            "Rohit Mehta": [],
+            "Neha Gupta": [],
+            "Rahul Sharma": [],
+            "Simran Kaur": [],
+            "Aditya Raj": [],
+            "Meera Sharma": []
+        };
+
+        const messagesList = document.getElementById("messagesList");
+        const chatBox = document.getElementById("chatBox");
+        const messagesPage = document.getElementById("messagesPage");
+        const chatMessages = document.getElementById("chatMessages");
+        const messageInput = document.getElementById("messageInput");
+        const chatUserImg = document.getElementById("chatUserImg");
+        let currentChatUser = "";
+
+        const userImages = {
+            "Amit Verma": "https://tse4.mm.bing.net/th?id=OIP._9jmdonDM15KmHjNgc-mKAHaJQ&pid=Api&P=0&h=220",
+            "Priya Singh": "https://tse3.mm.bing.net/th?id=OIP.Lb4-iiVYIX9-gh-ZSyYKpQHaNK&pid=Api&P=0&h=220",
+            "Rohit Mehta": "https://tse3.mm.bing.net/th?id=OIP.D-M5l2Bpzr9BsQO91x9RQgHaJQ&pid=Api&P=0&h=220",
+            "Neha Gupta": "https://tse4.mm.bing.net/th?id=OIP.E_v9kAaNeCL4IrErzeumsAHaKv&pid=Api&P=0&h=220",
+            "Rahul Sharma": "https://tse1.mm.bing.net/th?id=OIP.FJ4uR7FrHZSDkrdwz3kQSAHaJE&pid=Api&P=0&h=220",
+            "Simran Kaur": "https://tse4.mm.bing.net/th?id=OIP.M9J1VbHwAR4AxfG68qgrFgHaLJ&pid=Api&P=0&h=220",
+            "Aditya Raj": "https://tse4.mm.bing.net/th?id=OIP.2iXNr6x2bGSOaFP4qhFw_QHaFU&pid=Api&P=0&h=220",
+            "Meera Sharma": "https://tse2.mm.bing.net/th?id=OIP.aOf7cdrYk4Cb2QyN9_DJ-QHaNK&pid=Api&P=0&h=220"
+        };
+
+        function openChat(name) {
+            currentChatUser = name;
+            document.getElementById("chatUserName").innerText = name;
+            chatUserImg.src = userImages[name] || "https://source.unsplash.com/40x40/?person";
+            chatMessages.innerHTML = "";
+            messagesData[name].forEach(msg => {
+                const messageElement = document.createElement("div");
+                messageElement.innerText = msg.text;
+                chatMessages.appendChild(messageElement);
+            });
+            messagesPage.style.display = "none";
+            chatBox.style.display = "flex";
+        }
+
+        function closeChat() {
+            chatBox.style.display = "none";
+            messagesPage.style.display = "block";
+        }
+
+        function sendMessage() {
+            const text = messageInput.value.trim();
+            if (text === "") return;
+            messagesData[currentChatUser].push({ text, sent: true });
+            const messageElement = document.createElement("div");
+            messageElement.innerText = text;
+            chatMessages.appendChild(messageElement);
+            messageInput.value = "";
+        }
+
+        Object.keys(messagesData).forEach(name => {
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("message");
+            messageElement.innerHTML = `
+                <img src="${userImages[name]}" alt="User">
+                <div class="text">
+                    <h4>${name}</h4>
+                </div>`;
+            messageElement.addEventListener("click", () => openChat(name));
+            messagesList.appendChild(messageElement);
+        });
+    </script>
+    <script src="../../Profile/nav.js"></script>
+</body>
+</html>

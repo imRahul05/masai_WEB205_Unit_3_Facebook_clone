@@ -6,29 +6,29 @@
     <title>Memories</title>
     <link rel="stylesheet" href="memories.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
 </head>
 <body>
 
     <!-- Navbar -->
-    <div id="navbar-container"></div>
-
+    <navigation-bar style="margin-bottom: 2rem;"></navigation-bar>
     <!-- Main Content -->
-    <div class="content">
+    <div class="content" style="margin-top: 6rem;">
         <!-- Sidebar Section -->
         <div class="side-section">
             <nav class="side-navbar">
-                <a class="menu-list"><span><i class="fa-solid fa-user"></i></span>User Profile</a>
-                <a href="./component/HomePage/sidebarPage/findFriend.html" class="menu-list"><span><i class="fa-solid fa-user-group"></i></span>Find Friends</a>
-                <a class="menu-list"><span><i class="fa-solid fa-clock-rotate-left"></i></span>Memories</a>
-                <a class="menu-list"><span><i class="fa-solid fa-bookmark"></i></span>Saved</a>
-                <a class="menu-list"><span><i class="fa-solid fa-users-line"></i></span>Groups</a>
-                <a class="menu-list"><span><i class="fa-brands fa-youtube"></i></span>Video</a>
-                <a class="menu-list"><span><i class="fa-solid fa-store"></i></span>MarketPlace</a>
-                <a class="menu-list"><span><i class="fa-regular fa-calendar"></i></span>Feeds</a>
-                <a class="menu-list"><span><i class="fa-solid fa-angle-down"></i></span>See More</a>
+                <a href="../../../Profile/index.html" class="menu-list"><span><i class="fa-solid fa-user"></i></span><span id="username">User Profile</span></a>
+                <a href="../findFriend.html" class="menu-list"><span><i class="fa-solid fa-user-group"></i></span>Find Friends</a>
+                <a href="../memoriesPage/memories.html" class="menu-list"><span><i class="fa-solid fa-clock-rotate-left"></i></span>Memories</a>
+                <a href="../savedPage/saved.html" class="menu-list"><span><i class="fa-solid fa-bookmark"></i></span>Saved</a>
+                <a href="../groupPage/group.html" class="menu-list"><span><i class="fa-solid fa-users-line"></i></span>Groups</a>
+                <a href="../videoPage/video.html" class="menu-list"><span><i class="fa-brands fa-youtube"></i></span>Video</a>
+                <a href="../marketPlacePage/market.html" class="menu-list"><span><i class="fa-solid fa-store"></i></span>MarketPlace</a>
+                <a href="#" class="menu-list"><span><i class="fa-regular fa-calendar"></i></span>Feeds</a>
+                <a href="#" class="menu-list"><span><i class="fa-solid fa-angle-down"></i></span>See More</a>
             </nav>
         </div>
-
         <!-- Main Middle Section -->
         <div class="middle-section">
             <h2>Your Memories</h2>
@@ -89,7 +89,7 @@
     </div>
 
     <!-- Script Links -->
-    <script src="navbar/navbar.js"></script>
+    <script src="../../../Profile/nav.js"></script>
     <script src="memories.js"></script>
 </body>
 </html>

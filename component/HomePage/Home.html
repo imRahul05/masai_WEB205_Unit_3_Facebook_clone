@@ -10,25 +10,44 @@
 </head>
 <body>
     <div id="navbar-container"></div>
+     
     <div class="content">
         <div class="side-section">
             <nav class="side-navbar">
-                <a  class="menu-list"><span><i class="fa-solid fa-user"></i></span>Usaer Profile</a>
+                <a href="../Profile/index.html" class="menu-list"><span><i class="fa-solid fa-user"></i></span><span id="username">Usaer Profile</span></a>
                 <a href="./sidebarPage/findFriend.html" class="menu-list"><span><i class="fa-solid fa-user-group"></i></span>Find Friends</a>
                 <a href="./sidebarPage/memoriesPage/memories.html" class="menu-list"><span><i class="fa-solid fa-clock-rotate-left"></i></span>Memories</a>
                 <a href="./sidebarPage/savedPage/saved.html" class="menu-list"><span><i class="fa-solid fa-bookmark"></i></span>Saved</a>
                 <a href="./sidebarPage/groupPage/group.html" class="menu-list"><span><i class="fa-solid fa-users-line"></i></span>Groups</a>
                 <a href="./sidebarPage/videoPage/video.html" class="menu-list"><span><i class="fa-brands fa-youtube"></i></span>Video</a>
                 <a href="./sidebarPage/marketPlacePage/market.html" class="menu-list"><span><i class="fa-solid fa-store"></i></span>MarketPlace</a>
-                <a class="menu-list"><span><i class="fa-regular fa-calendar"></i></span>Feeds</a>
-                <a class="menu-list"><span><i class="fa-solid fa-angle-down"></i></span>See More</a>
-                
+                <a href="#" class="menu-list"><span><i class="fa-regular fa-calendar"></i></span>Feeds</a>
+                <a href="#" class="menu-list"><span><i class="fa-solid fa-angle-down"></i></span>See More</a>
             </nav>
         </div>
         <div class="middle-section">
+            <div class="stories-section">
+                <div id="stories-container"></div>
+            </div>
+            <div id="story-popup" class="popup">
+                <div class="popup-content">
+                    <h2>Create Story</h2>
+                    <input type="file" id="storyImage" accept="image/*,video/*">
+                    <div id="storyPreview"></div>
+                    <button id="postStoryButton">Post Story</button>
+                    <button id="closeStoryPopup">Cancel</button>
+                </div>
+            </div>
+            <div id="story-modal" class="modal">
+                <div class="modal-content">
+                    <span id="close-modal" class="close-button">&times;</span>
+                    <div id="story-modal-media"></div>
+                </div>
+            </div>
+
             <div class="post-section">
                 <div class="input-section">
-                    <img src="./navbar/Logo.webp" alt="profile">
+                    <img id="input-profile" src="./navbar/Logo.webp" alt="profile">
                     <input type="text" placeholder="What's on your mind..?"/>
                 </div>
                 <div class="post-options">
@@ -66,7 +85,6 @@
                             <button class="add-friend">Add Friend</button>
                         </div>
                     </div>
-                    <!-- Add more friends here -->
                 </div>
             </div>
         </div>

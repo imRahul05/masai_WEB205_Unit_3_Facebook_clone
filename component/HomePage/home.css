@@ -21,7 +21,6 @@ body .content{
     height: 100vh; 
     position: fixed;
     left: 0;
-    top: 0;
     padding: 20px;
 }
 .side-navbar {
@@ -92,13 +91,55 @@ body .content{
 .input-section input:hover {
     background: #e9ecef;
 }
-
-/* Post Options */
 .post-options {
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
 }
+
+/* Post Options */
+.posts-options {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.hidden {
+    display: none;
+}
+#post-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.dropdown-menu button {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+    background: #f0f0f0;
+}
+
 .post-header {
     display: flex;
     align-items: center;
@@ -397,7 +438,7 @@ body .content{
     background-color: #4CAF50;
 }
 .liked {
-    color: blue !important; /* Change to the color you want */
+    color: blue !important; 
     font-weight: bold;
 }
 
@@ -412,7 +453,7 @@ body .content{
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    width: 350px;
+    width: 400px;
     text-align: center;
 }
 
@@ -441,12 +482,132 @@ body .content{
 
 #postButton {
     background-color: #1877F2;
+
     color: white;
 }
 
 #closePopup {
     background-color: #ccc;
 }
+/* Stories Section */
+.stories-section {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+#stories-container{
+    display: flex;
+    gap: 1rem;
+}
+.story {
+    width: 100px;
+    height: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.story img,
+.story video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.story p {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 2px 5px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+/* Popup Styling */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#storyPreview {
+    margin-top: 10px;
+    width: 100%;
+    height: 200px;
+    display: none;
+}
+
+#storyPreview img,
+#storyPreview video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    position: relative;
+    width: 60%;
+    max-width: 600px;
+    background: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: rgb(37, 57, 157);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+#story-modal-media {
+    max-width: 100%;
+    max-height: 80vh;
+    margin: 20px 0;
+}
+
+#story-modal img,
+#story-modal video {
+    width: 90%;
+    height: auto;
+    object-fit: cover;
+}
+
 
 @media screen and (max-width: 768px) {
     .right-side-section {
@@ -540,5 +701,130 @@ body .content{
 
     .side-navbar .menu-list span {
         display: none;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .side-section {
+        width: 200px;
+        padding: 15px;
+    }
+
+    .post-section {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .posts {
+        width: 90%;
+    }
+
+    .create-story {
+        width: 90%;
+    }
+
+    .input-section input {
+        padding: 10px;
+    }
+}
+@media screen and (max-width: 1178px) {
+    /* Hide the right-side section */
+    .right-side-section {
+        display: none;
+    }
+
+    .side-section {
+        width: 100px;  /* You can adjust this value based on your design */
+        padding: 5px;
+    }
+
+    /* Adjust the menu list in the left-side navbar */
+    .side-navbar .menu-list {
+        font-size: 7px;
+        padding: 5px;
+    }
+
+    /* Adjust the post section */
+    
+}
+
+/* Mobile Devices (480px to 768px) */
+@media screen and (max-width: 768px) {
+    .side-section {
+        display: none;
+    }
+
+    .side-navbar .menu-list {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .post-section {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .posts {
+        width: 100%;
+    }
+
+    .create-story {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .post {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .middle-section {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .input-section input {
+        padding: 8px;
+    }
+
+    .right-side-section {
+        width: 100%;
+        position: relative;
+    }
+}
+
+
+/* Small Screens (Mobile portrait devices <480px) */
+@media screen and (max-width: 480px) {
+    .side-section {
+        display: none;
+    }
+
+    .post-section {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .posts {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .create-story {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .input-section input {
+        padding: 6px;
+    }
+
+    .post-footer {
+        font-size: 12px;
+    }
+
+    .comment-popup {
+        width: 100%;
+        padding: 10px;
     }
 }
