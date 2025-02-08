@@ -1,3 +1,8 @@
+let currUser=(JSON.parse(localStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('currentUser')) )|| "Guest"; 
+let profilePic = document.getElementById("profile-pic");
+if (currUser.profilePic) {
+    profilePic.src = currUser.profilePic;
+}
 document.addEventListener("DOMContentLoaded", function () {
     const navbarContainer = document.getElementById("navbar-container");
 
@@ -19,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <div class="nav-right">
                         <a href="messages.html"><i class="fa-brands fa-facebook-messenger"></i></a>
                         <a href="notifications.html"><i class="fa-solid fa-bell"></i></a>
-                        <a href="profile.html"><img class="profile-pic" src="./navbar/Logo.webp" alt="profile" /></a>
+                        <a href="profile.html"><img id="profile-pic" class="profile-pic" src="./navbar/Logo.webp" alt="profile" /></a>
                         <div class="setting_menu">
                             <div class="settings_menu_inner">
                                 <div class="user_profile">

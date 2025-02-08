@@ -1,7 +1,10 @@
-// Fetch posts container
 let postsContainer = document.querySelector(".posts");
 let postContentInput = document.getElementById("postContent");
 let currentUser=(JSON.parse(localStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('currentUser')) )|| "Guest"; 
+let inputProfilePic = document.getElementById("input-profile");
+if (currentUser.profilePic) {
+    inputProfilePic.src = currentUser.profilePic;
+}
 document.addEventListener("DOMContentLoaded", function () {
     let username = document.getElementById("username");
     username.textContent=currentUser.firstName || "Guest";
@@ -22,23 +25,24 @@ async function fetchingPosts() {
     let posts = res ? Object.entries(res).map(([id, data]) => ({ id, ...data })) : [];
     displayPosts(posts);
 }
-
-// Display posts dynamically
-// Display posts dynamically
 function displayPosts(posts) {
-    postsContainer.innerHTML = ""; // Clear existing posts
+    postsContainer.innerHTML = ""; 
     posts.forEach(post => {
+        if (!post || !post.timestamp) {
+            console.warn("Invalid post detected", post);
+            return; 
+        }
         let postElement = document.createElement("div");
         postElement.classList.add("post");
-
-        let currentuser = "user123"; // Replace with actual logged-in user ID
+        
+        let currentuser = currentUser.firstName||"Guest"; 
         let isLiked = post.likedUsers && post.likedUsers.includes(currentuser);
 
         postElement.innerHTML = `
             <div class="post-header">
-                <img src="${post.profile_pic}" alt="${post.username}" class="profile-pic">
+                <img src="${post.profile_pic || "./navbar/Logo.webp"}" alt="${post.username || Guest}" class="profile-pic">
                 <div>
-                    <h4>${post.username}</h4>
+                    <h4>${post.username || Guest}</h4>
                     <p>${new Date(post.timestamp).toLocaleString()}</p>
                 </div>
                 <div class="posts-options">
@@ -50,7 +54,7 @@ function displayPosts(posts) {
                 </div>
             </div>
             <div class="post-content">
-                <p>${post.content}</p>
+                <p>${post.content || ""}</p>
                 ${post.image ? `<img src="${post.image}" alt="Post Image" class="post-image">` : ""}
             </div>
             <div class="post-footer">
@@ -98,6 +102,19 @@ function displayPosts(posts) {
         });
     });
 }
+document.addEventListener("DOMContentLoaded", function() {
+    let postPopup = document.getElementById("post-popup");
+    let postTrigger = document.querySelector(".input-section input");
+    
+    if (postTrigger) {
+        postTrigger.addEventListener("click", () => {
+            postPopup.style.display = "block";
+        });
+    } else {
+        console.error("Popup trigger not found!");
+    }
+});
+
 function editPost(post) {
     let newContent = prompt("Edit your post:", post.content);
     if (newContent !== null && newContent.trim() !== "") {
@@ -124,7 +141,6 @@ let postButton = document.getElementById("postButton");
 let closePopup = document.getElementById("closePopup");
 let photo=document.getElementById("poto");
 
-// Show popup when clicking the input field
 document.querySelector(".input-section input").addEventListener("click", () => {
     postPopup.style.display = "block";
 });
@@ -164,11 +180,11 @@ postButton.addEventListener("click", async () => {
     let posts = await response.json();
     
     let newPostId = posts ? Object.keys(posts).length+1 : 1; // Assign ID based on count
-
+    console.log("profilepic",currentUser.profilePic)
     let newPost = {
         id: newPostId, // Assign calculated ID
         username:currentUser.firstName|| "Guest", // Replace with actual user data
-        profile_pic: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4YreOWfDX3kK-QLAbAL4ufCPc84ol2MA8Xg&s", // Replace with actual profile pic
+        profile_pic: currentUser.profilePic, 
         content: content,
         image: imageUrl,
         timestamp: new Date().toISOString(),
@@ -198,16 +214,15 @@ async function updateLikes(postId) {
         post.likedUsers = [];
     }
     
-    let currentUser = "user123"; // Replace with actual user ID or session user
+    let currentuser = currentUser.firstName||"Guest"; 
     if (!post.likedUsers.includes(currentUser)) {
         post.likes += 1; // Increment the like count
-        post.likedUsers.push(currentUser); // Add user to liked list
+        post.likedUsers.push(currentuser); 
     } else {
         post.likes -= 1; // Decrement the like count
-        post.likedUsers = post.likedUsers.filter(user => user !== currentUser);
+        post.likedUsers = post.likedUsers.filter(user => user !== currentuser);
     }
 
-    // Update the Firebase database
     await fetch(`https://facebook-ce39f-default-rtdb.firebaseio.com/posts/${postId-1}.json`, {
         method: 'PATCH',
         headers: {
@@ -245,13 +260,10 @@ async function openCommentPopup(postId) {
 
     // Append the popup to the body
     document.body.appendChild(popup);
-
-    // Handle close button click
     popup.querySelector('.close-popup').addEventListener('click', () => {
         document.body.removeChild(popup); // Remove the popup
     });
 
-    // Handle submit comment button click
     popup.querySelector('.submit-comment').addEventListener('click', async () => {
         let commentText = popup.querySelector('#commentText').value;
 
@@ -266,7 +278,7 @@ async function addComment(postId, commentText) {
     let post = await response.json();
 
     // Get username or set default value
-    let username = post.username;  // You can replace this with actual username if available
+    let username = currentUser.firstName||"Guest";  
 
     // Add new comment as an object with username and text
     if (!post.comments) {
@@ -293,6 +305,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const postStoryButton = document.getElementById("postStoryButton");
     const closeStoryPopup = document.getElementById("closeStoryPopup");
     const storiesContainer = document.getElementById("stories-container");
+    const storyModal = document.getElementById("story-modal");
+    const closeModalButton = document.getElementById("close-modal");
+    const storyModalMedia = document.getElementById("story-modal-media");
+
 
     const firebaseURL = "https://facebook-ce39f-default-rtdb.firebaseio.com/stories.json";
 
@@ -334,9 +350,9 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(firebaseURL)
             .then(response => response.json())
             .then(data => {
-                let nextID = 1; // Start from 1
+                let nextID = 1; 
                 if (data) {
-                    const keys = Object.keys(data).map(Number); // Convert keys to numbers
+                    const keys = Object.keys(data).map(Number); 
                     console.log(keys.length)
                     if (keys.length > 0) {
                         nextID = Math.max(...keys) + 1; // Get max ID and increment
@@ -356,8 +372,8 @@ document.addEventListener("DOMContentLoaded", function () {
             reader.onload = function (e) {
                 getNextStoryID((storyID) => {
                     const storyData = {
-                        username:currentUser.firstName||"Guest", // Change this dynamically if needed
-                        media: e.target.result, // Base64 Data URL
+                        username:currentUser.firstName||"Guest", 
+                        media: e.target.result, 
                         timestamp: Date.now()
                     };
 
@@ -367,7 +383,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         body: JSON.stringify(storyData),
                         headers: { "Content-Type": "application/json" }
                     }).then(() => {
-                        displayStory(storyData); // Display without refresh
+                        displayStory(storyData); 
                         storyPopup.style.display = "none";
                         storyImageInput.value = "";
                         storyPreview.innerHTML = "";
@@ -384,19 +400,26 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(firebaseURL)
             .then(response => response.json())
             .then(data => {
-                storiesContainer.innerHTML = ""; // Clear before reloading
+                storiesContainer.innerHTML = ""; 
                 if (data) {
                     Object.keys(data).forEach(key => {
                         const story = data[key];
-                        if (Date.now() - story.timestamp < 86400000) { // 24 hours expiry
-                            displayStory(story);
+    
+                        if (story && story.timestamp) { // Check if story is not null
+                            if (Date.now() - story.timestamp < 86400000) { // 24 hours expiry
+                                displayStory(story);
+                            } else {
+                                deleteStory(key);
+                            }
                         } else {
-                            deleteStory(key);
+                            console.warn(`Skipping null or invalid story for key: ${key}`);
                         }
                     });
                 }
-            });
+            })
+            .catch(error => console.error("Error loading stories:", error));
     }
+    
 
     // Display Story on UI
     function displayStory(story) {
@@ -413,6 +436,42 @@ document.addEventListener("DOMContentLoaded", function () {
         storyElement.innerHTML = `${mediaElement}<p>${story.username}</p>`;
         storiesContainer.appendChild(storyElement);
     }
+    function displayStory(story) {
+        let storyElement = document.createElement("div");
+        storyElement.classList.add("story");
+        let mediaElement;
+
+        if (story.media.startsWith("data:image")) {
+            mediaElement = `<img src="${story.media}" alt="Story">`;
+        } else if (story.media.startsWith("data:video")) {
+            mediaElement = `<video src="${story.media}" autoplay loop></video>`;
+        }
+
+        storyElement.innerHTML = `${mediaElement}<p>${story.username}</p>`;
+
+        // Add click event to open story modal
+        storyElement.addEventListener("click", () => openStoryModal(story));
+
+        storiesContainer.appendChild(storyElement);
+    }
+    function openStoryModal(story) {
+        storyModal.style.display = "flex";
+        storyModalMedia.innerHTML = "";
+        let mediaElement;
+        if (story.media.startsWith("data:image")) {
+            mediaElement = `<img src="${story.media}" alt="Story">`;
+        } else if (story.media.startsWith("data:video")) {
+            mediaElement = `<video src="${story.media}" controls autoplay></video>`;
+        }
+
+        storyModalMedia.innerHTML = mediaElement;
+    }
+
+    // Close Modal (Popup)
+    closeModalButton.addEventListener("click", () => {
+        storyModal.style.display = "none";
+        storyModalMedia.innerHTML = ""; 
+    });
 
     // Delete Expired Story from Firebase
     function deleteStory(storyId) {
