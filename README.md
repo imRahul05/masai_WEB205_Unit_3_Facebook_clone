@@ -1,4 +1,4 @@
-# Facebook Clone - 30 Days JavaScript Challenge
+# Facebook Clone 
 
 ## Overview
 This project is a Facebook clone built. It mimics core Facebook features such as authentication, posting, notifications, and interactive UI components.
