@@ -73,6 +73,17 @@ This project is a Facebook clone built. It mimics core Facebook features such as
    Open with live server
    ```
 
+### Feature Overview
+| Feature | Screenshot |
+|---------|------------|
+| Login Page | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/login.png" alt="Login Page" width="400"/> |
+| Sign Up | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/signup.png" alt="Sign Up Page" width="400"/> |
+| Forgot Password | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/forgot-password.png" alt="Forgot Password Page" width="400"/> |
+| Home Page | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/homepage.png" alt="Home Page" width="400"/> |
+| Create Story | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/create-story.png" alt="Create Story Feature" width="400"/> |
+| Create Post | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/create-post.png" alt="Create Post Feature" width="400"/> |
+| Messages | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/mesage.png" alt="Messages Feature" width="400"/> |
+| Notifications | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/notification.png" alt="Notifications Feature" width="400"/> |
 
 ## Usage
 
@@ -115,18 +126,6 @@ If you have any questions or suggestions, feel free to reach out to the project 
 
 
 ## Screenshots
-
-### Feature Overview
-| Feature | Screenshot |
-|---------|------------|
-| Login Page | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/login.png" alt="Login Page" width="400"/> |
-| Sign Up | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/signup.png" alt="Sign Up Page" width="400"/> |
-| Forgot Password | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/forgot-password.png" alt="Forgot Password Page" width="400"/> |
-| Home Page | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/homepage.png" alt="Home Page" width="400"/> |
-| Create Story | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/create-story.png" alt="Create Story Feature" width="400"/> |
-| Create Post | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/create-post.png" alt="Create Post Feature" width="400"/> |
-| Messages | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/mesage.png" alt="Messages Feature" width="400"/> |
-| Notifications | <img src="https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/notification.png" alt="Notifications Feature" width="400"/> |
 
 ### Individual Features
 
