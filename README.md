@@ -14,7 +14,7 @@ OR
 
 [![Project Demo](https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/homepage.png)](https://drive.google.com/file/d/YOUR_VIDEO_ID/view)
 
-// For a specific section in your README:
+
 ### Video Tutorial
 ▶️ [Watch the demo video](https://drive.google.com/file/d/YOUR_VIDEO_ID/view)
 
