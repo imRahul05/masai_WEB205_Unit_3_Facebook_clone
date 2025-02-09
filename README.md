@@ -12,7 +12,7 @@ https://drive.google.com/file/d/YOUR_VIDEO_ID/view
 
 OR
 
-[![Project Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://drive.google.com/file/d/YOUR_VIDEO_ID/view)
+[![Project Demo](https://github.com/imRahul05/masai_WEB205_Unit_3_Facebook_clone/blob/main/assets/create-story.png)](https://drive.google.com/file/d/YOUR_VIDEO_ID/view)
 
 // For a specific section in your README:
 ### Video Tutorial
