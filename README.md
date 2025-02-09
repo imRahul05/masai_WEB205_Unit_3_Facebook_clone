@@ -6,6 +6,18 @@ This project is a Facebook clone built. It mimics core Facebook features such as
 ## Project Type
 Fullstack
 
+## Demo Video
+
+https://drive.google.com/file/d/YOUR_VIDEO_ID/view
+
+OR
+
+[![Project Demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://drive.google.com/file/d/YOUR_VIDEO_ID/view)
+
+// For a specific section in your README:
+### Video Tutorial
+▶️ [Watch the demo video](https://drive.google.com/file/d/YOUR_VIDEO_ID/view)
+
 ## Directory Structure
 ```
 
@@ -209,6 +221,13 @@ Response:
   "timestamp": 1704115200000
 }
 ```
+
+## Tech Stack
+1. HTML
+2. CSS
+3. javaScript
+
+
 ## Contributing
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature-branch`).
