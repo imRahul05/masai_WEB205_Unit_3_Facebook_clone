@@ -6,9 +6,14 @@ This project is a Facebook clone built. It mimics core Facebook features such as
 ## Project Type
 Fullstack
 
+## Deplolyed App
+```
+https://fb-clone-masai.netlify.app/
+```
+
 ## Demo Video
 
-https://drive.google.com/file/d/YOUR_VIDEO_ID/view
+https://drive.google.com/file/d/1mvBiIkRiIudoeOilkdlBeClqzpSjHXQw/view?usp=sharing
 
 OR
 
@@ -76,6 +81,11 @@ OR
 ├── index.js
 └── styles.css
 ```
+
+
+
+## Video Walkthrough of the project
+[![Video Walkthrough](https://img.youtube.com/vi/YPcJofZe0yw/0.jpg)](https://youtu.be/YPcJofZe0yw)
 
 ## Installation
 1. Clone the repository:
