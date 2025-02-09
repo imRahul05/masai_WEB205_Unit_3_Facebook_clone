@@ -3,7 +3,10 @@
 ## Overview
 This project is a Facebook clone built. It mimics core Facebook features such as authentication, posting, notifications, and interactive UI components.
 
-## Project Structure
+## Project Type
+Fullstack
+
+## Directory Structure
 ```
 
 ├── .vscode/
@@ -109,9 +112,103 @@ The authentication logic is handled in the `auth.js` file located at `auth.js`.
 ### Features
 - **User Authentication**: Users can log in and log out.
 - **Profile Management**: Users can view and update their profile information.
-- **Video Uploads**: Users can upload and view videos.
+- **Create story and Posts**user can dynamically create posts and story that will go to realtime firebase  and fetched and displayed .
 - **Dynamic Navigation Bar**: The navigation bar adjusts paths dynamically based on the current location of the HTML file.
 
+
+## Credentials
+```
+Demo mail - sarah@example.com 
+Demo password - password123
+```
+
+
+## APIs Used
+fireBase Realtime database API
+
+## API Endpoints
+
+All endpoints use the base URL: `https://facebook-ce39f-default-rtdb.firebaseio.com`
+
+### Posts
+
+| Method | Endpoint | Description | Request Body | Response |
+|--------|----------|-------------|--------------|-----------|
+| GET | `/posts.json` | Fetch all posts | None | Array of post objects |
+| PUT | `/posts/${postId}.json` | Create/Update a post | `{ "id": number, "username": string, "profile_pic": string, "content": string, "image": string, "timestamp": string, "likes": number, "comments": array }` | Created/Updated post object |
+| PATCH | `/posts/${postId}.json` | Update post content | `{ "content": string }` | Updated post object |
+| DELETE | `/posts/${postId}.json` | Delete a post | None | None |
+
+### Stories
+
+| Method | Endpoint | Description | Request Body | Response |
+|--------|----------|-------------|--------------|-----------|
+| GET | `/stories.json` | Fetch all stories | None | Array of story objects |
+| PUT | `/stories/${storyId}.json` | Create a new story | `{ "username": string, "media": string, "timestamp": number }` | Created story object |
+| DELETE | `/stories/${storyId}.json` | Delete a story | None | None |
+
+### Example Requests and Responses
+
+#### Fetch Posts
+```javascript
+GET /posts.json
+
+Response:
+{
+  "0": {
+    "id": 1,
+    "username": "John Doe",
+    "content": "Hello World!",
+    "image": "data:image/jpeg;base64,...",
+    "timestamp": "2024-01-01T12:00:00.000Z",
+    "likes": 5,
+    "comments": ["none"]
+  },
+  ...
+}
+
+PUT /posts/1.json
+{
+  "id": 2,
+  "username": "Sarah",
+  "profile_pic": "profile_url",
+  "content": "New post content",
+  "image": "data:image/jpeg;base64,...",
+  "timestamp": "2024-01-01T12:00:00.000Z",
+  "likes": 0,
+  "comments": ["none"]
+}
+
+# Create Post
+
+Response:
+```{
+  "id": 2,
+  "username": "Sarah",
+  "profile_pic": "profile_url",
+  "content": "New post content",
+  "image": "data:image/jpeg;base64,...",
+  "timestamp": "2024-01-01T12:00:00.000Z",
+  "likes": 0,
+  "comments": ["none"]
+}
+```
+# Create Story
+PUT /stories/1.json
+```
+{
+  "username": "Sarah",
+  "media": "data:image/jpeg;base64,...",
+  "timestamp": 1704115200000
+}
+
+Response:
+{
+  "username": "Sarah",
+  "media": "data:image/jpeg;base64,...",
+  "timestamp": 1704115200000
+}
+```
 ## Contributing
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature-branch`).
